@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&family=Poppins:wght@500;600;700;800&family=Montserrat:wght@600;700;800&family=Roboto:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Cinematic Design System for fym (Find Your Movie) */
+
+@layer base {
+  :root {
+    /* Core cinema-inspired palette */
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Cinematic primary - Deep red like velvet curtains */
+    --primary: 0 72% 45%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 0 72% 55%;
+
+    /* Cinematic secondary - Gold like film awards */
+    --secondary: 45 85% 55%;
+    --secondary-foreground: 0 0% 8%;
+
+    /* Muted tones for subtle elements */
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 65%;
+
+    /* Accent - Electric blue like neon signs */
+    --accent: 210 100% 60%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 16%;
+    --ring: 0 72% 45%;
+
+    --radius: 12px;
+
+    /* Custom cinematic colors */
+    --cinema-black: 0 0% 4%;
+    --cinema-dark: 0 0% 8%;
+    --cinema-red: 0 72% 45%;
+    --cinema-gold: 45 85% 55%;
+    --cinema-blue: 210 100% 60%;
+    --cinema-purple: 270 50% 40%;
+    --film-grain: 0 0% 95%;
+
+    /* Neon palette */
+    --neon-blue: 210 100% 60%;
+    --neon-violet: 270 100% 65%;
+    --neon-cyan: 190 95% 60%;
+    --neon-teal: 170 85% 55%;
+
+    /* Gradients for cinematic effects */
+    --gradient-cinema: linear-gradient(135deg, hsl(var(--cinema-red)), hsl(var(--cinema-purple)));
+    --gradient-spotlight: radial-gradient(circle at center, hsl(var(--cinema-gold) / 0.3), transparent 70%);
+    --gradient-curtain: linear-gradient(45deg, hsl(var(--cinema-red)), hsl(var(--cinema-dark)));
+    --gradient-film: linear-gradient(90deg, hsl(var(--cinema-dark)), hsl(var(--cinema-black)), hsl(var(--cinema-dark)));
+
+    /* Shadows for depth */
+    --shadow-cinema: 0 25px 50px -12px hsl(var(--cinema-black) / 0.8);
+    --shadow-glow: 0 0 40px hsl(var(--cinema-red) / 0.4);
+    --shadow-neon: 0 0 20px hsl(var(--accent) / 0.6);
+
+    /* Animation variables */
+    --transition-cinema: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-glow: all 0.3s ease-in-out;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+    /* Clean dark gradient background */
+    background: linear-gradient(180deg, #121212 0%, #1A1A1A 100%);
+  }
+
+  /* Removed film grain/dots overlay for a cleaner, modern look */
+}
+
+@layer components {
+  .glass-panel {
+    @apply rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl;
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.35);
+  }
+
+  .neon-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+  .neon-hover:hover {
+    box-shadow: 0 0 0 1px rgba(255, 79, 79, 0.5), 0 0 24px rgba(0, 255, 247, 0.25);
+    transform: translateY(-2px);
+  }
+  /* Cinematic Button Variants */
+  .btn-hero {
+    @apply bg-gradient-to-r from-cinema-red to-cinema-purple text-white;
+    @apply px-8 py-4 rounded-xl font-medium text-lg;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:shadow-glow hover:scale-105 focus-visible:shadow-neon;
+    @apply active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply bg-cinema-dark border border-cinema-gold/30 text-cinema-gold;
+    @apply px-6 py-3 rounded-lg font-medium;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:bg-cinema-gold/10 hover:border-cinema-gold hover:shadow-neon;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent border border-muted text-muted-foreground;
+    @apply px-4 py-2 rounded-lg;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:bg-muted/20 hover:text-foreground hover:border-foreground/30;
+  }
+
+  /* Movie Card Styles */
+  .movie-card {
+    @apply bg-card/40 backdrop-blur-xl border border-white/10;
+    @apply rounded-xl overflow-hidden;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:scale-105 hover:shadow-cinema hover:border-primary/30;
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.35);
+    background-image: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  }
+
+  .movie-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-t from-cinema-black/80 via-transparent to-transparent;
+    @apply opacity-0 transition-opacity duration-300;
+  }
+
+  .movie-card:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Quote Styling */
+  .quote-text {
+    @apply font-cinzel text-lg italic text-cinema-gold;
+    @apply relative pl-6;
+  }
+
+  .quote-text::before {
+    content: '"';
+    @apply absolute left-0 top-0 text-4xl text-cinema-red font-bold;
+  }
+
+  /* Glowing Elements */
+  .glow-red {
+    @apply shadow-glow;
+  }
+
+  .glow-blue {
+    @apply shadow-neon;
+  }
+
+  /* Typography Classes */
+  .heading-hero {
+    @apply font-poppins text-6xl font-bold text-transparent tracking-wide;
+    background: linear-gradient(90deg, #FF4C4C, #9C27B0, #00FFF7);
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+  .heading-section {
+    @apply font-poppins text-3xl font-semibold text-foreground;
+    background: linear-gradient(90deg, #FF6F61, #9C27B0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-cinema {
+    @apply font-roboto text-foreground/90 leading-relaxed;
+  }
+}
+
+@layer utilities {
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-cinema-dark;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-cinema-red rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-cinema-red/80;
+  }
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 20px hsl(var(--cinema-red) / 0.5);
+  }
+  to {
+    text-shadow: 0 0 30px hsl(var(--cinema-red) / 0.8), 0 0 40px hsl(var(--cinema-red) / 0.6);
+  }
+}
+
+/* Cinematic sweep overlay utility */
+.cinematic-sweep::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, hsla(var(--neon-blue)/0.08) 50%, transparent 100%);
+  pointer-events: none;
+  animation: sweep 1s ease-in-out;
+}
+
+/* Soft ripple helper for non-button surfaces */
+.ripple-surface {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
